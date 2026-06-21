@@ -2,15 +2,9 @@
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "framework": "vite",
-  "serverlessFunctions": {
-    "dist/server/server.js": {
+  "functions": {
+    "dist/server/**": {
       "runtime": "nodejs20.x"
     }
-  },
-  "rewrites": [
-    {
-      "source": "/:path*",
-      "destination": "/dist/server/server.js"
-    }
-  ]
+  }
 }
