@@ -4,7 +4,7 @@
   "framework": "vite",
   "functions": {
     "dist/server/**": {
-      "runtime": "nodejs20.x"
+      "runtime": "@vercel/node@2.2.0"
     }
   }
 }
