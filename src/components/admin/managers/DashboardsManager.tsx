@@ -56,7 +56,14 @@ function DashForm({ editing, onClose }: { editing: Dashboard | null; onClose: ()
 
   async function uploadThumb(file?: File) {
     if (!file) return;
-    try { const url = await uploadFile("dashboards", file); setF({ ...f, thumbnail_url: url }); toast.success("Uploaded"); }
+    try {
+      const url = await uploadFile("dashboards", file);
+      setF({ ...f, thumbnail_url: url });
+      // Add cache-busting parameter to ensure fresh image
+      const bustUrl = url + (url.includes('?') ? '&' : '?') + 't=' + Date.now();
+      setF({ ...f, thumbnail_url: bustUrl });
+      toast.success("Uploaded");
+    }
     catch (e: unknown) { toast.error(e instanceof Error ? e.message : "Upload failed"); }
   }
 
